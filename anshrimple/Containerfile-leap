@@ -1,0 +1,10 @@
+FROM opensuse/leap:latest
+
+RUN zypper refresh \
+	&& zypper update -y \
+	&& zypper install -yt pattern base \
+	&& zypper install -y python312 \
+	; zypper clean -a
+
+VOLUME ["/sys/fs/cgroup"]
+CMD ["/usr/lib/systemd/systemd"]

@@ -1,0 +1,4 @@
+FROM almalinux:latest
+
+VOLUME ["/sys/fs/cgroup"]
+CMD ["/usr/lib/systemd/systemd"]

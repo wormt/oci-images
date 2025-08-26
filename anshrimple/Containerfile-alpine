@@ -1,0 +1,13 @@
+FROM alpine:latest
+
+RUN apk update \
+	&& apk --no-cache upgrade -la \
+	&& apk --no-cache add \
+		openrc \
+		dbus \
+		python3
+
+RUN rc-update add dbus; rc-update add cgroups
+
+VOLUME ["/sys/fs/cgroup"]
+CMD ["/sbin/openrc"]

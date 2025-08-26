@@ -1,0 +1,12 @@
+FROM debian:stable
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt update -y && apt upgrade -y \
+	; apt install -y \
+		systemd-sysv \
+		python3 \
+	; apt clean -y
+
+VOLUME ["/sys/fs/cgroup"]
+CMD ["/usr/lib/systemd/systemd"]
