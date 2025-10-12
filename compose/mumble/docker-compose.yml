@@ -7,7 +7,7 @@ x-podman:
 
 services:
   murmur:
-    image: localhost/mumble:latest
+    image: docker.io/wormt/mumble:latest
     build:
       dockerfile: ./Dockerfile
     container_name: mumble
