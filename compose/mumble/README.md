@@ -17,7 +17,7 @@ x-podman:
 
 services:
   murmur:
-    image: localhost/mumble:latest
+    image: docker.io/wormt/mumble:latest
     build:
       dockerfile: ./Dockerfile
     container_name: mumble
@@ -44,4 +44,31 @@ services:
 
 volumes:
   mumble-db: {name: "mumble-db"}
+```
+
+## quadlet
+```
+[Unit]
+Description=Mumble
+
+[Container]
+ContainerName=mumble
+
+Image=docker.io/wormt/mumble:latest
+AutoUpdate=registry
+
+UserNS=keep-id:uid=1000,gid=1000
+
+PublishPort=64738:64738/udp
+PublishPort=64738:64738/tcp
+
+Volume=mumble-db:/data:U
+Volume=/opt/mumble/compose/config:/config:Z
+Volume=/opt/mumble/compose/ssl:/ssl:ro,Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
 ```
