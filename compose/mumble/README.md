@@ -1,5 +1,5 @@
 # Mumble Rootless Container
-A minimal musl libc mumble imge compiled with -O3.
+A minimal alpine mumble image compiled with -O3.
 
 This container is meant for a rootless podman setup. It does not use entrypoint
 & drops to user 1000 at the end of the build process. It is expected you have
