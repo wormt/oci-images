@@ -1,0 +1,37 @@
+---
+name: 'mumble'
+version: '3.9'
+
+x-podman:
+  in-pod: false
+
+services:
+  murmur:
+    image: localhost/mumble:latest
+    build:
+      dockerfile: ./Dockerfile
+    container_name: mumble
+    restart: on-failure:69
+    userns_mode: "keep-id:uid=1000,gid=1000"
+    # command: sleep 60000
+    ports:
+      - "64738:64738/udp"
+      - "64738:64738/tcp"
+    volumes:
+      - "mumble-db:/data:U"
+      - type: bind
+        source: ./config
+        target: /config
+        bind:
+          selinux: Z
+          create_host_path: true
+      - type: bind
+        source: ./ssl
+        target: /ssl
+        read_only: true
+        bind:
+          selinux: Z
+          create_host_path: true
+
+volumes:
+  mumble-db: {name: "mumble-db"}
