@@ -98,18 +98,26 @@ secrets:
 Requires an external secret pg_pass as well as a volume for uploads.
 ```
 [Unit]
-Requires=psql.service
-After=psql.service
+Description=PostgreSQL Server
 
 [Container]
-ContainerName=akkoma
-Image=docker.io/wormt/akkoma:latest
-UserNS=keep-id:uid=1000,gid=1000
-PublishPort=4000:4000/tcp
+ContainerName=psql
+Image=docker.io/library/postgres:17-alpine
+AutoUpdate=registry
+UserNS=keep-id:uid=70,gid=70
+Environment=POSTGRES_DB=akkoma POSTGRES_USER=akkoma POSTGRES_PASSWORD=/run/secrets/pg_pass
+HealthCmd=pg_isready -U $POSTGRES_USER -d $POSTGRES_DB
+HealthInterval=8s
+HealthRetries=5
+HealthTimeout=3s
 Network=akkoma-psql
-Volume=/opt/akkoma/compose/config:/etc/akkoma:Z
-Volume=/opt/akkoma/compose/static:/var/lib/akkoma/static:Z
-Volume=akkoma-uploads:/var/lib/akkoma/uploads:U
+Secret=pg_pass
+ShmSize=4gb
+Volume=/opt/akkoma/compose/pgconf:/etc/postgresql:z
+Volume=/opt/akkoma/compose/pgdata:/var/lib/postgresql/data:Z
+
+[Service]
+Restart=always
 
 [Install]
 WantedBy=default.target
