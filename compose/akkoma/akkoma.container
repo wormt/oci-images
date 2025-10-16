@@ -1,0 +1,19 @@
+[Unit]
+Description=Akkoma Server
+Requires=psql.service
+After=psql.service
+
+[Container]
+ContainerName=akkoma
+Image=localhost/akkoma:latest
+#Image=docker.io/wormt/akkoma:latest
+AutoUpdate=registry
+UserNS=keep-id:uid=1000,gid=1000
+PublishPort=4000:4000/tcp
+Network=akkoma-psql
+Volume=/opt/akkoma/compose/config:/etc/akkoma:Z
+Volume=/opt/akkoma/compose/static:/var/lib/akkoma/static:Z
+Volume=akkoma-uploads:/var/lib/akkoma/uploads:U
+
+[Install]
+WantedBy=default.target

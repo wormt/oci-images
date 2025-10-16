@@ -1,0 +1,8 @@
+config
+pgconf
+static
+pgdata
+*.psql
+*.exs
+.env
+nohup.out
