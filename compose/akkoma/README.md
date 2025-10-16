@@ -18,6 +18,8 @@ services:
   psql:
     image: postgres:17.6-alpine3.22
     container_name: psql
+    # command: ['-d', '5', '-c', 'config_file=/etc/postgresql/postgresql.conf']
+    # command: "sleep 60000"
     shm_size: 4gb
     restart: on-failure:10
     userns_mode: "keep-id:uid=70,gid=70"
@@ -50,14 +52,12 @@ services:
   akkoma:
     depends_on:
       - psql
-    # image: docker.io/wormt/akkoma:latest
-    image: localhost/akkoma:latest
+    image: docker.io/wormt/akkoma:latest
     build:
       dockerfile: ./Dockerfile
     container_name: akkoma
     # command: sleep 60000
     restart: on-failure:10
-    # restart: always
     userns_mode: "keep-id:uid=1000,gid=1000"
     ports:
       - "4000:4000/tcp"
