@@ -46,8 +46,7 @@ services:
   akkoma:
     depends_on:
       - psql
-    # image: docker.io/wormt/akkoma:latest
-    image: localhost/akkoma:latest
+    image: docker.io/wormt/akkoma:latest
     build:
       dockerfile: ./Dockerfile
     container_name: akkoma

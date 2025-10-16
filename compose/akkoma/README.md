@@ -1,8 +1,8 @@
 # Akkoma OCI Image
 this image is meant to be ran rootless with akkoma uid mapped to 1000. the easiest way to do that is with podman's userns_mode keep-id.
 
-- [https://codeberg.org/wormt/compose/src/branch/akkoma](repo)
-- [https://hub.docker.com/r/wormt/akkoma](registry)
+- [repo](https://codeberg.org/wormt/compose/src/branch/akkoma)
+- [registry](https://hub.docker.com/r/wormt/akkoma)
 
 ## docker-compose.yml
 Requires an external secret pg_pass & environment vars POSTGRES_DB & POSTGRES_USER set, as well as a volume for uploads.
@@ -124,9 +124,7 @@ After=psql.service
 
 [Container]
 ContainerName=akkoma
-Image=localhost/akkoma:latest
-#Image=docker.io/wormt/akkoma:latest
-AutoUpdate=registry
+Image=docker.io/wormt/akkoma:latest
 UserNS=keep-id:uid=1000,gid=1000
 PublishPort=4000:4000/tcp
 Network=akkoma-psql
