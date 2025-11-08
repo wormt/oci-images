@@ -4,5 +4,6 @@ static
 pgdata
 *.psql
 *.exs
+*.un~
 .env
 nohup.out
