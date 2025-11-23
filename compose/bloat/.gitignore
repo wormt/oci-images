@@ -1,0 +1,8 @@
+*.un~
+.env
+*.tar
+*.swp
+packages/
+config/bloat.conf
+melange.rsa
+sbom-*.spdx.json
