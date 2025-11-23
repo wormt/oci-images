@@ -1,0 +1,11 @@
+[Unit]
+Description=BloatFE
+
+[Container]
+ContainerName=bloat
+Image=docker.io/wormt/bloat:latest
+PublishPort=8080:8080/tcp
+Volume=/opt/bloat/compose/config:/etc/bloat:Z,ro
+
+[Install]
+WantedBy=default.target

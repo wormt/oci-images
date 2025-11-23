@@ -1,0 +1,22 @@
+---
+name: 'bloat'
+version: '3.9'
+
+x-podman:
+  in_pod: false
+
+services:
+  bloat:
+    image: docker.io/wormt/bloat:latest
+    container_name: bloat
+    restart: on-failure:10
+    ports:
+      - "8080:8080/tcp"
+    volumes:
+      - type: bind
+        source: ./config
+        target: /etc/bloat
+        read_only: true
+        bind:
+          selinux: Z
+          create_host_path: true
