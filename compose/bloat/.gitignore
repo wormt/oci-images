@@ -3,6 +3,7 @@
 *.tar
 *.swp
 packages/
+static/
 config/bloat.conf
 melange.rsa
 sbom-*.spdx.json
