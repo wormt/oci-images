@@ -6,6 +6,7 @@ ContainerName=bloat
 Image=docker.io/wormt/bloat:latest
 PublishPort=8080:8080/tcp
 Volume=/opt/bloat/compose/config:/etc/bloat:Z,ro
+Volume=/opt/bloat/compose/static:/usr/local/share/bloat/static/custom:Z,ro
 
 [Install]
 WantedBy=default.target
