@@ -1,0 +1,23 @@
+contents:
+  keyring:
+  repositories:
+    - https://dl-cdn.alpinelinux.org/alpine/v3.23/main
+    - https://dl-cdn.alpinelinux.org/alpine/v3.23/community
+  packages:
+    - alpine-base
+    - syncplay-server
+
+accounts:
+  users:
+    - username: syncplay
+      uid: 1337
+      shell: /sbin/nologin
+  groups:
+    - groupname: syncplay
+      gid: 1337
+  run-as: syncplay
+
+cmd: syncplay-server --port 8999
+
+archs:
+  - x86_64
