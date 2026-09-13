@@ -1,0 +1,24 @@
+[Unit]
+Description=PostgreSQL Server
+
+[Container]
+ContainerName=psql
+Image=docker.io/library/postgres:17-alpine
+AutoUpdate=registry
+UserNS=keep-id:uid=70,gid=70
+Environment=POSTGRES_DB=akkoma POSTGRES_USER=akkoma POSTGRES_PASSWORD=/run/secrets/pg_pass
+HealthCmd=pg_isready -U $POSTGRES_USER -d $POSTGRES_DB
+HealthInterval=8s
+HealthRetries=5
+HealthTimeout=3s
+Network=akkoma-psql
+Secret=pg_pass
+ShmSize=4gb
+Volume=/opt/akkoma/compose/pgconf:/etc/postgresql:z
+Volume=/opt/akkoma/compose/pgdata:/var/lib/postgresql/data:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,17 @@
+[Unit]
+Description=Syncplay Server
+
+[Container]
+ContainerName=syncplay
+Exec=syncplay-server --port 8999 --tls /etc/syncplay/ssl --disable-ready --isolate-room
+Environment=SYNCPLAY_SALT=CHANGEME
+Image=docker.io/wormt/syncplay:latest
+AutoUpdate=registry
+PublishPort=8999:8999/tcp
+Volume=%h/vol/%N/ssl:/etc/syncplay/ssl:Z,ro,U
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

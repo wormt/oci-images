@@ -1,0 +1,25 @@
+contents:
+  keyring:
+    - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    - http://localhost:8000/melange.rsa.pub
+  repositories:
+    - https://packages.wolfi.dev/os
+    - http://localhost:8000/
+  packages:
+    - ca-certificates-bundle
+    - bloat
+
+accounts:
+  users:
+    - username: bloat
+      uid: 1337
+      shell: /sbin/nologin
+  groups:
+    - groupname: bloat
+      gid: 1337
+  run-as: bloat
+
+cmd: bloat -f /etc/bloat/bloat.conf
+
+archs:
+  - x86_64

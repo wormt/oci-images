@@ -1,0 +1,8 @@
+# SPDX-License-Identifier: WTFPL
+FROM archlinux:latest
+
+RUN pacman -Syu --noconfirm python3 \
+	&& pacman -Scc --noconfirm
+
+VOLUME ["/sys/fs/cgroup"]
+CMD ["/lib/systemd/systemd"]

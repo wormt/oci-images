@@ -1,0 +1,5 @@
+.env
+ssl
+config
+*.un~
+*.swp

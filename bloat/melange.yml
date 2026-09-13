@@ -1,0 +1,39 @@
+package:
+  name: bloat
+  description: "A web client for Mastadon Network"
+  url: https://git.freesoftwareextremist.com/bloat/about/
+  version: 1
+  epoch: 0
+  copyright:
+    - license: CC0-1.0
+  target-architecture: ["x86_64"]
+  dependencies:
+    runtime:
+
+environment:
+  contents:
+    repositories:
+      - https://packages.wolfi.dev/os
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    packages:
+      - ca-certificates-bundle
+      - wolfi-base
+      - make
+      - go
+  accounts:
+    users:
+      - username: bloat
+        uid: 1337
+        gid: 1337
+    groups:
+      - groupname: bloat
+        gid: 1337
+
+pipeline:
+  - uses: git-checkout
+    with:
+      repository: "git://git.freesoftwareextremist.com/bloat"
+      branch: "master"
+  - uses: autoconf/make
+  - uses: autoconf/make-install
