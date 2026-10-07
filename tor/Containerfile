@@ -1,0 +1,26 @@
+ARG BASE_IMAGE=alpine:3.24
+
+FROM $BASE_IMAGE AS base
+RUN apk -v --no-cache update; \
+    apk -v --no-cache upgrade -la; \
+    apk -v --no-cache add \
+    tor=0.4.9.13-r0
+
+
+# hey girl are you a construction worker because you are from base as building
+FROM base AS building
+
+COPY torrc /etc/tor/torrc
+
+RUN mkdir -p /var/lib/tor/data; \
+    chown -R tor:tor /var/lib/tor; \
+    chmod 700 /var/lib/tor/data
+
+
+FROM building
+
+USER 100:101
+
+EXPOSE 9050/tcp
+
+CMD ["/usr/bin/tor", "-f", "/etc/tor/torrc"]

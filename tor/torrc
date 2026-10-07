@@ -1,0 +1,6 @@
+SOCKSPort 0.0.0.0:9050
+SOCKSPolicy accept private:*
+SOCKSPolicy reject *
+
+DataDirectory /var/lib/tor/data
+Log notice stdout
