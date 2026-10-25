@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: WTFPL
-FROM hexpm/elixir:1.18.4-erlang-27.3.4-alpine-3.22.2 as base
+FROM hexpm/elixir:1.19.6-erlang-28.5.0.8-alpine-3.24.3 as base
 RUN apk -v --no-cache update && \
 	apk -v --no-cache upgrade -la && \
 	apk -v --no-cache add \
