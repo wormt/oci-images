@@ -25,8 +25,8 @@ RUN apk -v --no-cache add \
 	cmake \
 	file-dev
 
-ADD --checksum=sha256:bf48dd8f8400010e5b81c05c098dadfca1c5b9be008a73c81972c19416fe0ff7 \
-	https://codeberg.org/wormt/akkoma/archive/stable.tar.gz /tmp/akkoma.tar.gz
+ADD --checksum=sha256:7179ac872c621df878cbcea85cb806343b31c098f2a5f4b81dfd87a808dd4de9 \
+	https://codeberg.org/ratmaxxing/akkoma/archive/0439c39c132c6707c55a9153cdba16345a4f8b28.tar.gz /tmp/akkoma.tar.gz
 RUN tar xf /tmp/akkoma.tar.gz -C /tmp
 WORKDIR /tmp/akkoma
 
