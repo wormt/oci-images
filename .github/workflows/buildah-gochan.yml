@@ -22,7 +22,7 @@ jobs:
         id: buildah
         uses: redhat-actions/buildah-build@v3
         with:
-          image: ghcr.io/${{ github.repository_owner }}/gochan
+          image: gochan
           tags: latest ${{ github.sha }}
           context: ./gochan
           containerfiles: |

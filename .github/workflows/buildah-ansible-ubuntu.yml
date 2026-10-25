@@ -22,7 +22,7 @@ jobs:
         id: buildah
         uses: redhat-actions/buildah-build@v3
         with:
-          image: ghcr.io/${{ github.repository_owner }}/ansible-ubuntu
+          image: ansible-ubuntu
           tags: latest ${{ github.sha }}
           context: ./ansible/ubuntu
           containerfiles: |
