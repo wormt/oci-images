@@ -7,7 +7,7 @@ x-podman:
 
 services:
   psql:
-    image: postgres:17.6-alpine3.22
+    image: postgres:17.10-alpine3.22
     container_name: psql
     # command: ['-d', '5', '-c', 'config_file=/etc/postgresql/postgresql.conf']
     # command: "sleep 60000"
