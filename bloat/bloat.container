@@ -3,7 +3,7 @@ Description=BloatFE
 
 [Container]
 ContainerName=bloat
-Image=docker.io/wormt/bloat:latest
+Image=ghcr.io/wormt/bloat:latest
 AutoUpdate=registry
 PublishPort=8080:8080/tcp
 Volume=/opt/bloat/compose/config:/etc/bloat:Z,ro

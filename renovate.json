@@ -1,0 +1,72 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "packageRules": [
+    {
+      "description": "no upstream to track",
+      "matchPackageNames": ["wormt/**", "ghcr.io/wormt/**", "localhost/**"],
+      "enabled": false
+    },
+    {
+      "description": "hexpm/elixir publishes like 1m tags",
+      "matchPackageNames": ["hexpm/elixir"],
+      "enabled": false
+    },
+    {
+      "description": "not needed",
+      "matchFileNames": ["ansible/**"],
+      "matchDatasources": ["docker"],
+      "pinDigests": true
+    },
+    {
+      "description": "alpine 3.22",
+      "matchFileNames": ["akkoma/Dockerfile", "mumble/Dockerfile"],
+      "matchDatasources": ["apk"],
+      "registryUrls": [
+        "https://dl-cdn.alpinelinux.org/alpine?branch=v3.22&components=main,community&arch=x86_64"
+      ]
+    },
+    {
+      "description": "alpine 3.24",
+      "matchFileNames": ["tor/Containerfile"],
+      "matchDatasources": ["apk"],
+      "registryUrls": [
+        "https://dl-cdn.alpinelinux.org/alpine?branch=v3.24&components=main,community&arch=x86_64"
+      ]
+    },
+    {
+      "description": "wolfi-base",
+      "matchFileNames": ["gochan/Dockerfile"],
+      "matchDatasources": ["apk"],
+      "registryUrls": ["https://packages.wolfi.dev/os?arch=x86_64"]
+    },
+    {
+      "description": "renovate cannot hash tarball. ADD needs a manual update",
+      "matchFileNames": ["gochan/Dockerfile", "mumble/Dockerfile"],
+      "prBodyNotes": [
+        "ADD --checksum=sha256:whatever still is at the previous hash. updat it before merging."
+      ]
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "gochan version is set by an ARG",
+      "managerFilePatterns": ["/^gochan\\/Dockerfile$/"],
+      "matchStrings": ["ARG GOCHAN_VERSION=(?<currentValue>\\S+)"],
+      "depNameTemplate": "gochan-org/gochan",
+      "datasourceTemplate": "github-tags",
+      "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "description": "mumble 1.5.x releases are numbered by MUMBLE_BUILD_NUMBER",
+      "managerFilePatterns": ["/^mumble\\/Dockerfile$/"],
+      "matchStrings": ["ARG MUMBLE_BUILD_NUMBER=(?<currentValue>\\d+)"],
+      "depNameTemplate": "mumble-voip/mumble",
+      "datasourceTemplate": "github-tags",
+      "extractVersionTemplate": "^v1\\.5\\.(?<version>\\d+)$",
+      "versioningTemplate": "loose"
+    }
+  ]
+}

@@ -4,7 +4,7 @@ Description=Mumble
 [Container]
 ContainerName=mumble
 
-Image=docker.io/wormt/mumble:latest
+Image=ghcr.io/wormt/mumble:latest
 AutoUpdate=registry
 
 UserNS=keep-id:uid=1000,gid=1000

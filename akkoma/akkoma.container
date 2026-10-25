@@ -5,7 +5,7 @@ After=psql.service
 
 [Container]
 ContainerName=akkoma
-Image=docker.io/wormt/akkoma:latest
+Image=ghcr.io/wormt/akkoma:latest
 UserNS=keep-id:uid=1000,gid=1000
 PublishPort=4000:4000/tcp
 Network=akkoma-psql
