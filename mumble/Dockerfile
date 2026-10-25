@@ -43,7 +43,7 @@ RUN apk -v --no-cache add \
   qt5-qtsvg-dev \
   qt5-qttools-dev
 
-ADD --checksum=sha256:db8990079f556a877218d471bcf2c24eb5e4520b652f3c20793d0aadedaae6ae \
+ADD --checksum=sha256:da181098ab062a44ab7f2b65ab2b65926898ebca5d8c665ca2ce50d38cd11414 \
   https://github.com/mumble-voip/mumble/releases/download/v$MUMBLE_VERSION/$TGZ /tmp/
 RUN tar xf /tmp/$TGZ -C /tmp && \
   mv /tmp/mumble-$MUMBLE_VERSION /tmp/mumble
