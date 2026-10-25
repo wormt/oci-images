@@ -1,0 +1,19 @@
+name: Build tor using Containerfile
+on: [push]
+
+jobs:
+  build:
+    name: Build tor
+    runs-on: ubuntu-26.04
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Buildah Action
+        uses: redhat-actions/buildah-build@v3
+        with:
+          image: ghcr.io/${{ github.repository_owner }}/tor
+          tags: latest ${{ github.sha }}
+          context: ./tor
+          containerfiles: |
+            ./tor/Containerfile

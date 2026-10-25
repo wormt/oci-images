@@ -1,0 +1,19 @@
+name: Build gochan using Dockerfile
+on: [push]
+
+jobs:
+  build:
+    name: Build gochan
+    runs-on: ubuntu-26.04
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Buildah Action
+        uses: redhat-actions/buildah-build@v3
+        with:
+          image: ghcr.io/${{ github.repository_owner }}/gochan
+          tags: latest ${{ github.sha }}
+          context: ./gochan
+          containerfiles: |
+            ./gochan/Dockerfile

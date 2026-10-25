@@ -1,0 +1,19 @@
+name: Build ansible-arch using Containerfile
+on: [push]
+
+jobs:
+  build:
+    name: Build ansible-arch
+    runs-on: ubuntu-26.04
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Buildah Action
+        uses: redhat-actions/buildah-build@v3
+        with:
+          image: ghcr.io/${{ github.repository_owner }}/ansible-arch
+          tags: latest ${{ github.sha }}
+          context: ./ansible/arch
+          containerfiles: |
+            ./ansible/arch/Containerfile

@@ -1,0 +1,19 @@
+name: Build ansible-alma using Containerfile
+on: [push]
+
+jobs:
+  build:
+    name: Build ansible-alma
+    runs-on: ubuntu-26.04
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Buildah Action
+        uses: redhat-actions/buildah-build@v3
+        with:
+          image: ghcr.io/${{ github.repository_owner }}/ansible-alma
+          tags: latest ${{ github.sha }}
+          context: ./ansible/alma
+          containerfiles: |
+            ./ansible/alma/Containerfile
