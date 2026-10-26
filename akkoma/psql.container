@@ -3,7 +3,7 @@ Description=PostgreSQL Server
 
 [Container]
 ContainerName=psql
-Image=docker.io/library/postgres:17-alpine
+Image=docker.io/library/postgres:18-alpine
 AutoUpdate=registry
 UserNS=keep-id:uid=70,gid=70
 Environment=POSTGRES_DB=akkoma POSTGRES_USER=akkoma POSTGRES_PASSWORD=/run/secrets/pg_pass
