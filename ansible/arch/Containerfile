@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: WTFPL
-FROM archlinux:latest@sha256:52dfbd5afb23a220d5ee92dafcb4c788d96c026ed04179890c23adef4c897fa0
+FROM archlinux:latest@sha256:ece6c971fec3c532fd508bce299a446deaf469feecbfe7c353e995bc1a5e7bba
 
 RUN pacman -Syu --noconfirm python3 \
 	&& pacman -Scc --noconfirm
