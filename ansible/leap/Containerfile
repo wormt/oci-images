@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: WTFPL
-FROM opensuse/leap:latest@sha256:40b8e1fc290b203380b9adc7cd147ef2141f5a613c7cf7117f678f626855654e
+FROM opensuse/leap:latest@sha256:966ea44f996aa60bd9ef163067a72cb6cdf5282aa4e91706f4d5a00c5d521bbf
 
 RUN zypper refresh \
 	&& zypper update -y \
